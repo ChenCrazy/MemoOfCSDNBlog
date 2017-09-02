@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VMware12中CentOS 7安装和网络设置</title>
+<link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body><div class="container"><p>Windows10作死又坏了一次，把上次的虚拟机也弄没了，只好重新配置，装完了，隔了好久有些东西也记得不清楚，又找不到以前的参考文章，在网络那块搞了一天，看了好的vi改ificg-ens的文章都解决不了，今天发现是系统网络的共享部分没有设置，哇，煞笔了，上次用的桥连很快都连上了并没有设置这块，这次重置了系统可能网络设置也变更了，所以以此为戒，自己写个文记下来。</p>
+
+
+
+<h3 id="安装">安装</h3>
+
+<p>关于CentOs 的安装，Linux中国社区里已经有很多资源了，不用讲述很多，很简单。 <br>
+<a href="https://linux.cn/article-8048-3.html" target="_blank">CentOS 7.3 安装</a> <br>
+结尾会有使用<code>sudo yum update</code> 等命令更新系统，这些都是很必要的。</p>
+
+
+
+<h3 id="vmware12中centos7网络设置">VMware12中CentOS7网络设置</h3>
+
+
+
+<h4 id="1概述">1.概述</h4>
+
+<p>VMware提供了三种将虚拟网卡和物理网卡捆绑起来的方式，即桥接(Bridge）模式，网络地址转换(Network Address Transformation, NAT)模式和主机(Host Only)模式。</p>
+
+<p>关于三种模式的区别，简单而言，Bridge模式直接将虚拟机添加到局域网中，使虚拟机看起来像网内的一台真实计算机，虚拟网卡和宿主物理网卡之间不存在名义上的从属关系，因而需要局域网内具有多余的IP地址能够提供给虚拟机网卡，如果局域网内严格给每台计算机分配固定的IP，那这种Bridge模式就基本失效。在Bridge模式下虚拟机既可以访问到Internet也可以同局域网内的其他真实计算机通信；NAT模式下宿主的物理网卡就充当了路由器或交换机的角色，这时VMware会根据宿主的真实IP提供很多Subset IP供虚拟机使用，这样所有的虚拟机都是通过宿主的网络端口进行对Internet的访问，但看起来这些虚拟计算机都合法地访问到了局域网或者Internet，因为他们的IP地址通过NAT技术之后看起来是合法的。Host Only模式下虚拟机之间可以相互通信，但虚拟机并不能同局域网内的其他真实计算机直接通信，但该模式下通过宿主访问Internet还是可以的。 </p>
+
+
+
+<h4 id="2虚拟机设置">2.虚拟机设置</h4>
+
+<p>用户可以在VMware workstation-&gt;编辑-&gt;虚拟网络编辑器 中查看这些信息。 <br>
+ <img src="http://img.blog.csdn.net/20170829172514679?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzQ2MTkzMzc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="虚拟网络编辑器" title=""></p>
+
+
+
+<hr>
+
+<p><img src="http://img.blog.csdn.net/20170829172542415?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzQ2MTkzMzc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="虚拟网络选择" title=""> <br>
+这里已NAT模式配置,使用它</p>
+
+<hr>
+
+<p>接下来更改外部设备的网络设置，打开设置—&gt;网络和Internet连接 —&gt;更改适配器选项，我这里是Win10界面。</p>
+
+<p><img src="http://img.blog.csdn.net/20170829172558950?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzQ2MTkzMzc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="设置" title=""></p>
+
+<p>选择“VMware Virtual Ethernet Adapter for VMnet8”网卡右键属性，选择VMware Bridge Protocol,同时设置ip自动获取，也可自行搜索有关手动配置IP地址的文章，我这里自动已经可以连通。</p>
+
+<p><img src="http://img.blog.csdn.net/20170829172610730?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzQ2MTkzMzc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="NAT VM8" title=""></p>
+
+<p>属性界面的设置，双击Internet协议版本，设置自动获取，若手动配置也可这里。</p>
+
+<p><img src="http://img.blog.csdn.net/20170829172626487?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzQ2MTkzMzc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="属性配置" title=""></p>
+
+<p>“VMware Virtual Ethernet Adapter for VMnet8”共享界面的设置</p>
+
+<p><img src="http://img.blog.csdn.net/20170829172639838?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzQ2MTkzMzc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="共享设置" title=""></p>
+
+<hr>
+
+<p>接下来将已装好虚拟机的网络连接做一下检查：3，选择虚拟机，右键—&gt; 设置-—&gt; 网络适配器—&gt; NAT 模式 <br>
+<img src="http://img.blog.csdn.net/20170829172653165?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzQ2MTkzMzc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="连接设置" title=""></p>
+
+<p>检验网络是否正常，不正常，在Centos终端输入 <code>vi /etc/sysconfig/network-scripts/ ifcfg-e**** (每台可能不一样)</code>中的BOOTPROTO是不是dhcp，如果不是则修改为dhcp，此外还需要设置onboot = yes; 然后用命令service network restart重启网络连接，就可以连上网络了</p>
+
+<p><img src="http://img.blog.csdn.net/20170829172711808?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzQ2MTkzMzc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="终端设置" title=""></p>
+
+<p>附加参考： <br>
+<a href="http://www.cnblogs.com/lanblogs/p/6104779.html" target="_blank">CentOs的联网方式</a></p>
+
+<hr>
+
+<hr>
+
+
+
+<h3 id="若没有权限更改文件">若没有权限更改文件</h3>
+
+<p>在终端 <code>sudo</code> 输入密码后使用root 用户更改，</p>
+
+
+
+<h4 id="1添加用户首先用adduser命令添加一个普通用户命令如下">1、添加用户，首先用adduser命令添加一个普通用户，命令如下：</h4>
+
+
+
+<pre class="prettyprint"><code class=" hljs php">[root***&amp;] adduser mac  <span class="hljs-comment">//添加一个名为tommy的用户</span>
+[root***&amp;] passwd mac    <span class="hljs-comment">//修改密码</span>
+Changing password <span class="hljs-keyword">for</span> user mac.
+<span class="hljs-keyword">New</span> UNIX password: <span class="hljs-comment">//在这里输入新密码,无显示</span>
+Retype <span class="hljs-keyword">new</span> UNIX password: <span class="hljs-comment">//再次输入新密码，无显示</span>
+passwd: all authentication tokens updated successfully.</code></pre>
+
+
+
+<h4 id="2提升用户权限方法">2、提升用户权限方法</h4>
+
+<p>修改/etc/sudoers 文件，找到下面一行，在root下面添加一行，如下所示：</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs vhdl">[root***&amp;]vi /etc/sudoers
+<span class="hljs-comment">---</span>
+## Allow root <span class="hljs-keyword">to</span> run any commands anywhere  //找到此行
+root <span class="hljs-keyword">ALL</span>=(<span class="hljs-keyword">ALL</span>) <span class="hljs-keyword">ALL</span>
+mac <span class="hljs-keyword">ALL</span>=(<span class="hljs-keyword">ALL</span>) <span class="hljs-keyword">ALL</span>  //按照root格式填写个人用户名</code></pre>
+
+<p>其他方法自行搜索 添加用户权限</p></div>
+<span>（2017-08-29 18:22）</span>
+</body>
+</html>

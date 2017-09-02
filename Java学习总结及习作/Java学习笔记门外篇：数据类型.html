@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java学习笔记门外篇：数据类型</title>
+<link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body><div class="container"><h2 id="一类-型"><strong>一、类 型</strong></h2>
+
+
+<h3 id="1范围与转换相关">1.范围与转换相关</h3>
+
+<table>
+    <tbody><tr><td><b>数据类型</b></td><td> <b>关键字 </b>   </td><td><b>内置类</b> </td><td><b> 范围</b> </td><td> <b>占字节</b> </td><td> <b>默认值</b> </td></tr>  
+    <tr><td>字节型 </td><td>byte  </td><td>Byte </td><td> -2<sup>7</sup> ~ +2<sup>7</sup>=-128~127 </td><td> 1字节: 8bit </td><td> 0 </td></tr>
+    <tr><td>短整型 </td><td>short</td><td> Short </td><td>-2<sup>15</sup>~+2<sup>7 </sup></td><td>2字节: 16bit </td><td>0 </td></tr>
+        <tr><td>整型</td><td>int</td><td>Integer</td><td>-2<sup>31</sup>~+2<sup>31 </sup></td><td>4字节: 32bit </td><td>0 </td></tr> 
+    <tr><td>长整型</td><td> long </td><td> Long </td><td> -2<sup>63 </sup>~ +2<sup>63 </sup></td> <td>8字节: 64bit </td><td> 0L </td></tr>
+        <tr><td>字符型</td><td> char </td><td>Character </td><td><small>JDK1.8中Java的字符采用Unicode6.2编码，<br>JVM采用UTF-16Big Endian。<br>Unicode范围为‘\u0000’到‘\uffff’，<br>整数范围是0~65535。<br>例如，65代表‘A’，97代表‘a’</small></td><td>2字节: 16bit </td><td>‘\u0000’<br>Null </td></tr>
+    <tr><td>单精度浮点型 </td><td> float </td><td> Float </td><td><small>Float.MIN_EXPONENT:-126 ~ Float.MAX_EXPONENT:127</small> </td><td>4字节: 32bit </td><td>0.0F </td></tr>
+    <tr><td>双精度浮点型</td><td>double </td><td>Double</td><td><small>Float.MIN_EXPONENT:-1022 ~ Float.MAX_EXPONENT:1023 <br> <b>(浮点数默认为double)</b></small></td><td>8字节:64bit </td><td>  0.0D </td></tr>
+    <tr><td>字符型 </td><td>boolean</td> <td>Boolean </td><td> false&nbsp; &amp; &nbsp;  ture</td><td> 1字节: 8bit  </td><td> false</td></tr>
+    <tr><td>类 </td><td>className各类类型的类名</td><td>&nbsp;</td><td>&nbsp; </td><td>&nbsp;</td><td> Null </td></tr>
+</tbody></table>
+
+
+
+<h3 id="2符号的简要使用">2.符号的简要使用</h3>
+
+
+
+<h4 id="格式控制符与算术运算符">格式控制符与算术运算符</h4>
+
+<table>
+<thead>
+<tr>
+  <th>格式控制符</th>
+  <th>表示</th>
+  <th>算术运算符</th>
+  <th>按优先级表示</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>%d</td>
+  <td>以十进制格式转出</td>
+  <td></td>
+  <td>.&nbsp;[]&nbsp;()&nbsp;,&nbsp;;</td>
+</tr>
+<tr>
+  <td>%e &nbsp;%E</td>
+  <td>以科学记号浮点数输出</td>
+  <td>单目</td>
+  <td>++,–,~,!</td>
+</tr>
+<tr>
+  <td>%o &nbsp;%O</td>
+  <td>以八进制整数格式控制</td>
+  <td>乘除</td>
+  <td>/,%,*,+,-</td>
+</tr>
+<tr>
+  <td>%x &nbsp;%X</td>
+  <td>以十六进制整数格式输出</td>
+  <td>位运算</td>
+  <td>&lt;&lt;,&gt;&gt;</td>
+</tr>
+<tr>
+  <td>%s &nbsp;%S</td>
+  <td>以字符串格式符号输出</td>
+  <td>关系符号</td>
+  <td>&gt;,&lt;,&gt;=.&lt;=,==,!=</td>
+</tr>
+<tr>
+  <td>%c &nbsp;%C</td>
+  <td>以字符符号输出</td>
+  <td>逻辑符号</td>
+  <td>&amp;,^,|,&amp;&amp;,||,?:</td>
+</tr>
+<tr>
+  <td>%b &nbsp;%B</td>
+  <td>以boolean型输出</td>
+  <td>赋值符号</td>
+  <td>=,+=,-=,/=,*/,%=</td>
+</tr>
+</tbody></table>
+
+
+<p>像这类符号可以举出非常多到用时查找即可在此仅仅列出部分  </p>
+
+
+
+<h3 id="3进制转换与表示格式">3.进制转换与表示格式</h3>
+
+<p>举个例子一目了然  :</p>
+
+
+
+<pre class="prettyprint"><code class="language-java hljs "><span class="hljs-keyword">int</span> number1 = <span class="hljs-number">12</span>;<span class="hljs-comment">//十进制 </span>
+<span class="hljs-keyword">int</span> number2 = <span class="hljs-number">014</span>;<span class="hljs-comment">//八进制 </span>
+<span class="hljs-keyword">int</span> number3 = <span class="hljs-number">0xc</span>;<span class="hljs-comment">//十六进制 </span>
+<span class="hljs-comment">//浮点数除用小数表示还可用科学记号法表示 </span>
+<span class="hljs-keyword">double</span> number4 = <span class="hljs-number">0.00123</span>; 
+<span class="hljs-keyword">double</span> number5 = <span class="hljs-number">1.23e-3</span>; 
+<span class="hljs-comment">//若要表示字符，则需要使用“'”符号 </span>
+<span class="hljs-keyword">char</span> size = <span class="hljs-string">'M'</span>; 
+<span class="hljs-keyword">char</span> name = <span class="hljs-string">'麦克喵'</span>; 
+<span class="hljs-comment">//对于常量的一种表示方法，为使表示更加清晰 </span>
+<span class="hljs-keyword">int</span> number7 = <span class="hljs-number">1234</span>_5678; 
+<span class="hljs-keyword">double</span> PI = <span class="hljs-number">3.141</span>_592_653; </code></pre>
+
+
+
+<h3 id="4使用javautilscanner与javamathbigdecimal标准类">4.使用java.util.Scanner与java.math.BigDecimal标准类</h3>
+
+
+
+<h4 id="1使用javautilscanner">1.使用java.util.Scanner</h4>
+
+<p>如果是要在命令提示符模式下取得用户输入，基本上可以使用System.in对象的read()方法，不过这个方法返回int类型。 <br>
+此时可以通过Scanner来代劳：</p>
+
+
+
+<pre class="prettyprint"><code class="language-java hljs "><span class="hljs-keyword">import</span> java.util.Scanner;<span class="hljs-comment">//导入类，以下即可简写</span>
+Scanner scan = <span class="hljs-keyword">new</span> Scanner (System.in);<span class="hljs-comment">//建立Scanner实例</span>
+<span class="hljs-keyword">int</span> num = scan.nextInt();<span class="hljs-comment">//获取输入的下一个整数</span>
+</code></pre>
+
+<p>Scanner的nextInt()方法会先看看标准输入中有无下一个字符串(以空格或换行符分隔)，有的话则尝试剖析为int类型，Scanner对每个基本类型都有对应的next__( )方法,如nextByte()、nextDouble()等，如果是直接取得字符串，则使用next(),如果取得用户输入的整行文字(以换行分隔)，则使用nextLine()。  </p>
+
+
+
+<h4 id="2使用javamathbigdecimal">2.使用java.math.BigDecimal()</h4>
+
+<ul>
+<li>由于Java遵循IEEE754浮点数运算规范，使用分数与指数表示浮点数，如0.75会用1/2+1/4表示，0.875会用1/2+1/4+1/8来表示，而0.1会1/16+1/32+1/256+1/512+1/4096+1/8192无限循环下去，无法精确表示而造成运算误差。所以1.0-0.8d 结果在Java、Python、JavaScript语言中也并非得到0.2。故当需要精确计算时要小心使用浮点数，而且也不要用==来比较浮点数运算结果。</li>
+<li>由上，为了获得更好的精确度，可以使用BigDecimal标准类，它提供有plus()、subtract()、multiply()、divide()方法进行加减乘除运算，add()加运算，equals()比较两个BigDecimal实质上是否相同。</li>
+</ul>
+
+
+
+<pre class="prettyprint"><code class="language-java hljs "><span class="hljs-keyword">import</span> java.math.BigDecimal;
+BigDecimal operand1 = <span class="hljs-keyword">new</span> BigDecimal(<span class="hljs-string">"1.0"</span>);
+BigDecimal operand2 = <span class="hljs-keyword">new</span> BigDecimal(<span class="hljs-string">"0.8"</span>);
+BigDecimal operand3 = <span class="hljs-keyword">new</span> BigDecimal(<span class="hljs-string">"0.2"</span>);
+BigDecimal num = <span class="hljs-keyword">new</span> BigDecimal(<span class="hljs-string">"2.0"</span>);
+BigDecimal result = operand1.subtract(operand2);
+<span class="hljs-keyword">if</span>(op1.add(op2).add(op3).equals(num)){
+    System.out.println(<span class="hljs-string">"op1、op2、op3的和等于num"</span>);
+    }</code></pre>
+
+
+
+<h3 id="4对象指定与相等性">4.对象指定与相等性</h3>
+
+<p>Java并非完全的面向对象程序语言，在Java中有两大类型系统，即基本类型和类类型 。初学者必须区分=，==运算用于基本类型和类类型的不同。  </p>
+
+<ul>
+<li>当=用于基本类型时，是将值赋给变量，当==用于基本类型时，是比较两个变量所储值是否相等。   </li>
+<li>当在操作对象时，=是表示指定名称adc参考自某个对象，==是指比较两个名称是否参考自同一个对象。！=恰相反，表示两个对象参考自不同对象。  </li>
+<li>从内存的实际运作方面来看，用于基本类型和对象类型，并无不同，都用作比较两个单元引用是否来自同一个地址。  </li>
+<li>进一步的，若比较不同对象或者相同对象的<strong>内容值</strong>而不关注对象参考时，所用的操作equals()方法更加合适。</li>
+</ul>
+
+
+
+<h2 id="二类类型"><strong>二、类类型</strong></h2>
+
+
+
+<h3 id="1自动装箱">1.自动装箱</h3>
+
+<p>使用基本类型是出于效率，但更多时候需要基本类型像对象一样被操作。 <br>
+ 使用Long、Integer、Double、Float、Boolean、Byte、Short、Character等类打包器。Wapper将基本类型打包到对象中，特殊的Number类对所有类型进行一般化的自动装箱(多态)，示例如下：</p>
+
+
+
+<pre class="prettyprint"><code class="language-java hljs "><span class="hljs-keyword">int</span> data = <span class="hljs-number">20</span>;
+Integer wrapper1 = <span class="hljs-keyword">new</span> Integer(data);<span class="hljs-comment">//使用new新建打包器对象</span>
+<span class="hljs-keyword">int</span> i = <span class="hljs-number">20</span>;
+Integer wrapper2 = i;<span class="hljs-comment">//进一步使用自动装箱功能</span>
+Integer wrapper3 = <span class="hljs-number">15</span>;
+<span class="hljs-keyword">int</span> wrap3 = wrapper3;<span class="hljs-comment">//自动拆箱</span>
+Double val = wrapper3.doubleValue()/<span class="hljs-number">3</span><span class="hljs-comment">//操作Integer类的doubleValue方法将打包值以double类型返回</span>
+System.out.println(wrapper1.compareTo(wrapper2));<span class="hljs-comment">//操作打包器方法与另一个对象的值进行比较，相同返回0，小于返回-1，大于返回1</span>
+Number num = <span class="hljs-number">2.71828</span>f;<span class="hljs-comment">//使用一般化Number类</span>
+Integer i = <span class="hljs-number">10</span>;
+System.out.println(i+<span class="hljs-number">10</span>);<span class="hljs-comment">//i会自动拆箱进行加法运算输出20</span>
+System.out.println(i++);<span class="hljs-comment">//i会先自动拆箱先输出10，再自增运算</span></code></pre>
+
+
+
+<h3 id="2自动拆箱内幕">2.自动拆箱内幕</h3>
+
+<p>自动装拆箱其实是一种<strong>编译程序语法糖(Compiler Sugar)</strong>,通过将一些步骤的操作封装到类中达到简化使用的效果。 <br>
+<em>引入：</em> 当我们如下操作时程序运行结果会出现不同</p>
+
+
+
+<pre class="prettyprint"><code class="language-java hljs ">        Integer i1 = <span class="hljs-number">100</span>;
+        Integer i2 = <span class="hljs-number">100</span>;
+        System.out.println((i1 == i2)? <span class="hljs-string">"ture"</span>:<span class="hljs-string">"false"</span>);<span class="hljs-comment">//返回ture</span>
+        Integer i3 = <span class="hljs-number">200</span>;
+        Integer i4 = <span class="hljs-number">200</span>;
+        System.out.println((i3 == i4 )?<span class="hljs-string">"ture"</span>:<span class="hljs-string">"falst"</span>);<span class="hljs-comment">//返回false</span></code></pre>
+
+<p>代码不过是将100改到200但执行的效果却不同，那么这个自动装箱语法糖究竟干了什么？实际上程序会使用Integer.valueof()来建立Integer实例，调用Integer类中的valueof()方法,源码如下</p>
+
+
+
+<pre class="prettyprint"><code class="language-java hljs "><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Integer <span class="hljs-title">valueof</span>(<span class="hljs-keyword">int</span> i){
+    <span class="hljs-keyword">if</span>(i&gt;=IntegerCache.low &amp;&amp; i&lt;=IntegerCache.high)
+        <span class="hljs-keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Integer(i);
+}</code></pre>
+
+<p>很明显，通过自动装箱到Integer过程中，判断了一个IntegerCache的范围值，Integer的缓存(Cache)，默认为byte的可改范围内(-128~127)，在此范围内，若有已分配有同值的实例，新的实例并不会分配新的空间储值，而是直接引用已有实例的空间地址。而在超过此范围时都会重新生成新的实例。 <br>
+故，在比较类类型的值时，使用equals()方法更具有保险性。</p>
+
+
+
+<h3 id="3特殊的类类型">3.特殊的类类型</h3>
+
+<p><strong>enum</strong>:枚举类关键字，enum定义了特殊的类继承自java.lang.Enum;其实也是Java中的一种语法糖。</p>
+
+
+
+<pre class="prettyprint"><code class="language-java hljs "><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> Action{
+    A,B,C,D}
+<span class="hljs-comment">//反编译</span>
+<span class="hljs-comment">//注意：直接继承自Enum类的程序会被编译器拒绝这里模拟反编译</span>
+<span class="hljs-keyword">import</span> java.lang.Enum;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Action</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Enum</span>{</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-title">Action</span>(String s, <span class="hljs-keyword">int</span> i){
+                    <span class="hljs-keyword">super</span>(s,i);}<span class="hljs-comment">//类构造器权限private，只有内部能实例化</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Action A;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Action B;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Action C;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Action D;
+    <span class="hljs-comment">//将存入的值定义为静态常量方便实例化后调用</span>
+    ...
+    <span class="hljs-keyword">static</span>{<span class="hljs-comment">//在静态代码块中实例化为带序号的对应名称对象</span>
+        A = <span class="hljs-keyword">new</span> Action(<span class="hljs-string">"A"</span>,<span class="hljs-number">0</span>);
+        B = <span class="hljs-keyword">new</span> Action(<span class="hljs-string">"B"</span>,<span class="hljs-number">0</span>);
+        C = <span class="hljs-keyword">new</span> Action(<span class="hljs-string">"C"</span>,<span class="hljs-number">0</span>);
+        D = <span class="hljs-keyword">new</span> Action(<span class="hljs-string">"D"</span>,<span class="hljs-number">0</span>);
+    ...
+    }
+}</code></pre>
+
+<p>在使用时，可直接当作静态常量调用，当方法定义为接收此类类型的参数时，传入时只能输入声明时定义几个的常量。</p>
+
+
+
+<h2 id="三对象初步"><strong>三.对象初步</strong></h2>
+
+
+
+<h3 id="1数组对象">1.数组对象</h3>
+
+<p>数组：用来接收数据，具有索引的数据结构。</p>
+
+
+
+<pre class="prettyprint"><code class="language-java hljs "><span class="hljs-keyword">int</span>[] array1 = {<span class="hljs-number">1</span>,<span class="hljs-number">15</span>,<span class="hljs-number">45</span>} ;<span class="hljs-comment">//声明有三个元素空间的数组并赋初始值</span>
+<span class="hljs-keyword">int</span>[] array2 = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">2</span>];<span class="hljs-comment">//声明2个连续空间的int数组</span>
+      array2[<span class="hljs-number">0</span>] = <span class="hljs-number">45</span>;
+      array2[<span class="hljs-number">1</span>] = <span class="hljs-number">782</span>;
+<span class="hljs-keyword">int</span>[] array3 = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]{<span class="hljs-number">46</span>,<span class="hljs-number">4564</span>,<span class="hljs-number">4546</span>,<span class="hljs-number">87</span>} 
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;array1.length;i++){<span class="hljs-comment">//利用for循环获取数组中的值</span>
+    <span class="hljs-keyword">if</span> (myList[i] &gt; max)  <span class="hljs-comment">//获取最大值</span>
+        max = array1[i]; 
+        } 
+System.out.println(max);
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> s:array2){<span class="hljs-comment">//增强型for循环是一种语法糖</span>
+    <span class="hljs-keyword">int</span> total += s; <span class="hljs-comment">//计算元素之和</span>
+    System.out.println(total); 
+    }
+<span class="hljs-keyword">int</span>[][] array3 = <span class="hljs-keyword">int</span>[<span class="hljs-number">2</span>][<span class="hljs-number">3</span>];<span class="hljs-comment">//多维数组的声明</span>
+<span class="hljs-keyword">int</span>[][] array4 = {{<span class="hljs-number">147</span>,<span class="hljs-number">848</span>,<span class="hljs-number">456</span>},{<span class="hljs-number">546</span>,<span class="hljs-number">787</span>,<span class="hljs-number">834</span>,<span class="hljs-number">628</span>,<span class="hljs-number">952</span>}};
+<span class="hljs-comment">//多维数组可看作矩阵，显然它并不完全是，实际上你也可以建立不规则数组</span>
+<span class="hljs-keyword">int</span>[][] array5 = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">2</span>][];
+        array5[<span class="hljs-number">0</span>] = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]{<span class="hljs-number">54</span>,<span class="hljs-number">66</span>,<span class="hljs-number">48</span>}；
+        array5[<span class="hljs-number">1</span>] = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]{<span class="hljs-number">45</span>,<span class="hljs-number">465</span>,<span class="hljs-number">62</span>,<span class="hljs-number">89</span>};</code></pre>
+
+<ul>
+<li>既然数组也是对象，int[]即是类名称，new方法即创建了int类型的数组实例，即int[]类的对象 </li>
+<li>多维数组也可理解为int[]类型的一维数组实例，即int[][]的对象.这样就理解了数组的多维实际上是一维数组的嵌套层叠</li>
+<li>使用new新建一个数组时，其每个索引元素都会有默认值(参见本文第一部分)。若默认值需更改，可使用<strong><em>java.util.Arrays的fill()方法</em></strong>来设定新建数组的默认值。</li>
+<li><strong>特别注意</strong>：当声明一个类数组时，<code>eg:Integer[] arr = new Integer[3];</code> 只声明容量而未赋值的时候，实际上并没有创建出任何对象。多维情况时同样适用。</li>
+</ul>
+
+
+
+<h3 id="2数组复制">2.数组复制</h3>
+
+<p>在Java中，数组自建立时长度即固定，若长度不够使用，需另建新的数组将原数组复制至新数组中。</p>
+
+<ol>
+<li><p>浅层复制(Shallow Copy)</p>
+
+<p>使用System.arrayCopy()方法可对数组进行选择复制，它接收五个参数：来源数组，来源起始索引，目的数组，目的起始索引，长度。 <br>
+JDK1.6以上还可用Arrays.copyOf()方法更加方便的复制数组，并自行建立新数组存储起来</p>
+
+<pre class="prettyprint"><code class="language-java hljs "><span class="hljs-keyword">int</span>[] s1 = {<span class="hljs-number">45</span>,<span class="hljs-number">82</span>,<span class="hljs-number">84</span>,<span class="hljs-number">215</span>,<span class="hljs-number">45</span>,<span class="hljs-number">98</span>,<span class="hljs-number">27</span>,<span class="hljs-number">54</span>};
+<span class="hljs-keyword">int</span>[] s2 = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[s1.length];
+System.arrayCopy(s1,<span class="hljs-number">0</span>,s2,<span class="hljs-number">0</span>,s1.length);
+<span class="hljs-keyword">int</span>[] s3 = Arrays.copyOf(s1,s1.length*<span class="hljs-number">2</span>);<span class="hljs-comment">//第二个参数即为新数组长度</span></code></pre></li>
+</ol>
+
+<p>然而实际上，以上两种方法用在类类型声明的数组时，都是执行浅层复制，即只复制数组的指针参考，并没有实际复制出对象。当改变其中一个数组的元素，会使因其复制得到的数组的元素都改变。</p>
+
+<ol>
+<li>深层复制(Deep Copy) <br>
+当我们复制对象数组时，因为每个对象实例都有各自的属性，用户需要手动将所要复制的对象属性指定到新建的数组中。</li>
+</ol>
+
+
+
+<pre class="prettyprint"><code class="language-java hljs ">class Clothes{<span class="hljs-comment">//定义一个对象，实例化元素添加到数组</span>
+    String color;
+    <span class="hljs-keyword">char</span> size;
+    Clothes(String color,<span class="hljs-keyword">char</span> size){
+        <span class="hljs-keyword">this</span>.color = color;
+        <span class="hljs-keyword">this</span>.size = size;
+    }
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DeepCopy</span>{</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span>(String[] args){
+        Clothes[] c1 = {<span class="hljs-keyword">new</span> Clothes(<span class="hljs-string">"red"</span>,<span class="hljs-string">'L'</span>),<span class="hljs-keyword">new</span> Clothes(<span class="hljs-string">"blue"</span>,<span class="hljs-string">'M'</span>)};
+        Clothes[] c2 = <span class="hljs-keyword">new</span> Clothes[c1.length];
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;c1.length; i++){
+            Clothers c = <span class="hljs-keyword">new</span> Clothes(c1[i].color, ci[i].size);
+            c2[i] = c;
+            }
+        c1[<span class="hljs-number">0</span>].color = <span class="hljs-string">"yellow"</span>;
+        System.out.println(c2[<span class="hljs-number">0</span>].color);
+    }
+}</code></pre>
+
+
+
+<h3 id="3字符串对象">3.字符串对象</h3>
+
+<p>字符串本质上是打包字符数组的对象，是java.lang.String类的实例。 <br>
+由于字符串在Java中是对象，所以也就拥有一些可操作的方法，像是可以使用<em>length()</em>方法取得字符串长度，使用<em>charAt()</em>取得字符串指定从0开始索引的某个字符，使用<em>toUppercase()</em>将原本为小写的字符串转换成大写。 <br>
+如果要将字符串转换成整数、浮点数等基本类型，可以使用一下剖析方法：</p>
+
+<table>
+<thead>
+<tr>
+  <th>方法</th>
+  <th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>Byte.parseByte(num)</td>
+  <td align="center">将字符串num剖析成byte类型整数</td>
+</tr>
+<tr>
+  <td>Short.parseShort(num)</td>
+  <td align="center">将字符串num剖析成short类型整数</td>
+</tr>
+<tr>
+  <td>Integer.parseInt(num)</td>
+  <td align="center">将字符串num剖析成int类型整数</td>
+</tr>
+<tr>
+  <td>Long.parseLong(num)</td>
+  <td align="center">将字符串num剖析成long类型整数</td>
+</tr>
+<tr>
+  <td>Float.parseFloat(num)</td>
+  <td align="center">将字符串num剖析成float类型浮点数</td>
+</tr>
+<tr>
+  <td>Double.parseDouble(num)</td>
+  <td align="center">将字符串num剖析成double类型浮点数</td>
+</tr>
+</tbody></table>
+
+
+
+
+<h3 id="4字符串特性">4.字符串特性</h3>
+
+<ul>
+<li>字符串池与字符串常量：</li>
+</ul>
+
+
+
+<pre class="prettyprint"><code class="language-java hljs ">String name1 = <span class="hljs-string">"麦克喵"</span>;<span class="hljs-comment">//字符串常量</span>
+String name2 = <span class="hljs-string">"麦克喵"</span>;
+String name1 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">"麦克喵"</span>);<span class="hljs-comment">//字符串池</span>
+String name1 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">"麦克喵"</span>);
+name1 = name2; <span class="hljs-comment">//true</span>
+name1 = name3; <span class="hljs-comment">//falst</span>
+name3 = name4; <span class="hljs-comment">//falst</span></code></pre>
+
+<p>在Java中，为了效率考虑，以“”包括的字符串只要内容相同，无论在程序代码中出现多少次，JVM都只会建立一个Integer实例，并在字符串池中维护，直到GC清除。 <br>
+即引用一个类型时，看是否创建出一个新的实例，这也是一直在强调的，只是比较实质内容的情况，尽量使用equals()方法。</p>
+
+<ul>
+<li><p>不可变动字符串 <br>
+在Java中，字符串对象一旦建立，就无法更改对象中的内容，而使用+连接字符串的情况，实质上是建立了一个java.lang.StringBuilder对象，它使用append()对+左右的字符串进行连接，并通过toString()方法返回String类型。 <br>
+java.lang.StringBuilder是JDK1.5之后新增的类，在该版本之前，是使用java.lang.StringBuffer类，StringBuilder与StringBuffer具有相同的操作接口，在单机非多线程(Multithread)的情况下，使用StringBuilder会有较好的效率，因为StringBuilder不会处理同步(Synchronized)的问题。</p>
+
+<p>&nbsp; <br>
+&nbsp;</p></li>
+</ul>
+
+<p><strong>参考文章：</strong> <br>
+1.<a href="http://blog.csdn.net/bonjean/article/details/51475363Java" title="学习_ 基本数据类型_float" target="_blank">关于float类型的剖析</a> <br>
+2.<a href="http://www.iteye.com/news/28296" title="数组" target="_blank"> 关于 Java 数组的 12 个最佳方法</a> <br>
+3.<a href="http://www.cnblogs.com/A_ming/archive/2010/04/13/1711395.html" title="String" target="_blank">String、StringBuffer与StringBuilder之间区别</a></p></div>
+<span>（2017-08-26 20:41）</span>
+</body>
+</html>
