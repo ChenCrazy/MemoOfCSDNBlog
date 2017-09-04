@@ -167,7 +167,19 @@ CDPD：通过蜂窝式网络无线访问ISP路由器 <br>
 </code> <br>
     <br><br>
 <img src="http://img.blog.csdn.net/20170829032350429?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzQ2MTkzMzc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="测试样图" title=""> <br>
+   
+    这个命令的功能是判定数据包到达目的主机所经过的路径、显示数据包经过的中继节点清单
+和到达时间。tracert命令的格式如下：<br>
+    <code>tracert [-d] [-h maximum_hops] [-j host-list] [-w timeout] target_name</code>
+命令行中的参数-d是要求tracert不对主机名进行解析，-h是指定搜索到目的地址的最大轮
+数，-j的功能是沿着主机列表释放源路由，-w用来设置超时时间间隔。<br>
+通过tracert可以判断一个服务器是属于国内还是国际（网络服务器的物理未知不能依靠域
+名进行判断），根据路由路经可以判断信息从自己的系统发送到网络上，先后经过了哪些IP
+到大对方服务器，这就好像乘公共汽车的时候从起点出发到达终点站的时候，中途会出现很
+多路牌一个道理，我们清楚了自己的信息的传送路径，才能够更清晰的了解网络、对服务器
+进行攻击。
     <br><br>    <br><br>    <br><br>
+  
     下一部分：协议的“层次”</p></div>
         <span>（2017-08-29 03:33）</span>
     </body>
