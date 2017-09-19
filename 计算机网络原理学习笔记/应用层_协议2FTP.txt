@@ -1,0 +1,94 @@
+FTP：文件传输协议
+传输文件往来与远程主机
+客户端/服务器模式
+FTP：RFC959
+ftp服务器：端口21
+
+ftp:分离的控制，数据连接
+ftp客户端在ftp服务器的21端口进行联系，使用TCP作为传输协议
+它会打开两个并行的连接：
+    控制：使用21端口建立连接，会一直保持连接，在客户端和服务器之间交换命令，响应，称为带外控制：out of band control
+    数据传输：往来于服务器的文件使用另一个20端口，只有数据传输时才会连接达到会话状态
+    与HTTP不同，不用维持会话状态。
+ftp维持状态(state)：当前目录、先前的认证信息等
+
+FTP控制命令
+略
+
+电子邮件：
+    四个重要组件：用户代理，邮件服务器，简单邮件传输协议smtp，邮局协议pop 
+当用户发送邮件时，首先通过SMTP发送到邮件注册的服务器上，在服务器队列中等待发送，通过服务器之间发送，最后分发到用户的邮箱中
+用户代理：
+    写作编辑，阅读邮件报文，Foxmail，OE，elm,Netscape Messenger
+    外发，接收的报文存储在邮件服务器中 
+邮件服务器：
+    邮箱，包括了收到的用户的邮件(尚未被阅读，默认设置为阅读完即删除，若想保存下来就需要在用户代理中增加设置)
+    报文，队列包含了外发的邮件报文
+    smtp协议，用在邮件服务器之间发送邮件
+    用途：   客户端：将邮件发送到邮件服务器
+            服务器：接收和转发邮件
+电子邮件：SMTP[RFC821]
+依赖使用tcp可靠的传送邮件报文，端口25
+直接传输：从发送服务器到接收服务器
+不仅依赖TCP握手，安全传输，SMTP自己本身也具有的传输的三个阶段：握手，报文传输，结束
+命令/响应交互 命令：ASCII文本 响应:状态码和短语
+
+邮件报文必须使用7bit ASCII表示
+
+使用持续连接，使用crlf.crlf表示邮件结束
+
+邮件报文格式：
+smtp: 交换邮件报文协议
+RFC 822：文本报文格式标准：
+    首部诸行，e.g.:
+        To：
+        From:
+        Subject:
+        不同于smtp命令
+
+//与信体间隔一空行
+    信体：即报文，ASCII characters only.
+
+邮件格式：多媒体扩展MIME
+MIME:multimedia mail extension ,RFC2045,2056
+在报文首部附加额外的信息声明MIME内容类型
+在上述格式的subject下扩展
+    MIME-Version:1.0 
+    Content-Transfer-Encoding：base64//数据编码方法
+    Content-Type:image/jpeg //多媒体类型，子类型，参数声明
+    base64 encoded data .......编码后的数据...
+    .........base64 encoded data
+
+MIME类型声明
+    Content-Type:type/Subtype; parameters
+Text
+    子类型样例：plain,html
+Image
+    子类型样例：jpeg,gif
+Audio
+    子类型样例:basic(8bit mu-law encoded),32kadpcm(32 kbps coding)
+Video
+    子类型样例：mpeg,quicktime
+Application
+    需使用其他阅读器的数据
+    子类型样例：msword,,octet-stream
+MIME多分部类型，实例
+略 
+
+邮件访问协议
+在之前由于PC尚未普及，阅读邮件直接在服务器上进行，不必取下来
+当PC普及后——>
+    SMTP：发送/存储到接收方的服务器
+    邮件访问协议：从服务器中取信
+        POP3:Post Office Protocol [RFC1939]。认证(agent<--->server)和下载
+        认证：
+            客户端命令：user:用户名 pass:口令
+            服务器响应：+OK -ERR
+        交互：
+            客户端：
+            list:列出报文号码
+            retr:用报文号码取信
+            dele:用报文号码取信
+            quit退出
+        IMAP：Inter Mail Access Protocol[RFC1730]。更多复杂功能，在服务器中操作存储在那里的报文
+        HTTP：Hotmail,163.net,etc.
