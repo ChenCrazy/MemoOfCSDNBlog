@@ -44,8 +44,8 @@ Servlet执行流程
 Servlet生命周期
     初始化阶段：调用类的构造方法创建Servlet实例，
         然后调用Init(ServletConfig)方法，若有实例就不会在创建、调用，直接执行下一步。
-    响应客户端请求: 调用Servet()方法
-        由Servet方法根据提交方式选择执行doGet/doPost方法
+    响应客户端请求: 调用Service()方法
+        由Service方法根据提交方式选择执行doGet/doPost方法
     终止阶段: 调用destroy()方法
 
 TomCat容器装载Servlet()的三种情况
