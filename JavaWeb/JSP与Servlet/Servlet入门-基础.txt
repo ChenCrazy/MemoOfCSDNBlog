@@ -1,10 +1,5 @@
 Servlet基础
 
-TomCat等级
-手工编写Servlet
-使用MyEclipse编写
-Servlet生命周期
-使用Servlet获取九大内置对象
 
 Servlet简介
 1)Servlet是按照Servlet规范编写的Java类。
@@ -33,6 +28,7 @@ Servet可以管理很多上下文Context容器，一个Context就是一个Web工
 2️⃣重写doGet()/doPost方法，取决于用户提交信息的方式
 3️⃣在web.xml中注册这个Servlet
 
+
 Servlet执行流程
 以Get方式请求执行顺序
     请求HelloServlet ————> 用户点击超链接<a herf="servlet/Servlet"></a>
@@ -47,6 +43,12 @@ Servlet生命周期
     响应客户端请求: 调用Service()方法
         由Service方法根据提交方式选择执行doGet/doPost方法
     终止阶段: 调用destroy()方法
+
+1、WEB服务器(Tomcat)首先会找到该Servlet并装载该Servlet
+2、WEB服务器(Tomcat)会创建该Servlet的实例
+3、WEB服务器(Tomcat)会调用实例对象的init()方法
+4、WEB服务器(Tomcat)创建一个封装HTTP请求消息的HttpServletRequest对象和一个代表HTTP响应消息的HttpServletResponse对象，然后调用service()方法并将请求对象和响应对象作为参数传递进去。(实现是通过多线程技术)
+5、WEB服务器在某种情况，停止对该Servlet支持，Servlet引擎将卸载该Servlet，在卸载之前会调用Servlet的destroy()方法进行销毁
 
 TomCat容器装载Servlet()的三种情况
     Servlet容器启动时会自动装载某些Servlet，实现它只需要在web.xml文件中配置
@@ -70,4 +72,13 @@ TomCat容器装载Servlet()的三种情况
     page                                             this
     pageContext                                     pageContext
     Config                                          getServletConfig函数
+
+JSP和Servlet的区别
+1、JSP是Servlet技术的扩展，本质上就是Servlet的简易方式。但是两者的创建方式不一样。
+2、Servlet完全是JAVA程序代码构成，擅长于流程控制和事务处理，通过Servlet来生成动态网页很不直观.
+3、Servlet和JSP最主要的不同点在于，Servlet的应用逻辑是在Java文件中，并且完全从表示层中的HTML里分离开来。
+      而JSP是Java和HTML标签构成一个扩展名为.jsp的文件，可以方便地编写动态网页。
+JSP侧重于视图，Servlet主要用于控制逻辑。
+因此在实际应用中采用Servlet来控制业务流程，而采用JSP来生成动态网页.在struts框架中，JSP位于MVC设计模式的视图层，而Servlet位于控制层.
+
 
