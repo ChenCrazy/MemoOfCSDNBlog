@@ -14,7 +14,7 @@
 
      | Null | include指令|include动作|
      | --- | --- | --- |
-    | 语法格式 |`<%@ include file="..."%>`  | `<jsp: include page="..."/>` |
+    | 语法格式 | <%@ include file="..."%> | <jsp: include page="..."/> |
     | 发生作用的时间 | 页面转换期间 | 请求期间 |
      |包含的内容 | 文件的实际内容，被包含页面的源代码 | 被包含页面的输出结果 |
     | 转换成的Servlet | 主页面和包含页面转换为一个Servlet | 主页面和包含页面转换为独立的Servlet |
