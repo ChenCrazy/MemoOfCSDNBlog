@@ -71,15 +71,15 @@ Servlet创建Servlet实例时(构造方法后)，首先创建Servlet类的初始
 
    | Jsp对象                |      使用Servlet的获取方式 |
    |     ---      |  ---------       |
-    Out                   |       response.getWriter() |
-     request         |         service方法中的request参数 |
-     response        |        service方法中的response参数 |
-     session        |           request.getSession()函数 |
-     application    |          getServletContext()函数 |
-    exception      |           Throwable |
-     page          |       this |
-     pageContext     |        pageContext |
-     Config       |         getServletConfig函数 |
+   | Out                   |       response.getWriter() |
+   | request         |         service方法中的request参数 |
+   | response        |        service方法中的response参数 |
+   |  session        |           request.getSession()函数 |
+   |  application    |          getServletContext()函数 |
+   | exception      |           Throwable |
+   |  page          |       this |
+   |  pageContext     |        pageContext |
+   |  Config       |         getServletConfig函数 |
 
 ## JSP和Servlet的区别
 1、JSP是Servlet技术的扩展，本质上就是Servlet的简易方式。但是两者的创建方式不一样。  
