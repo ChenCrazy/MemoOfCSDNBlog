@@ -17,16 +17,15 @@
 * **CDATA区**
     在此区域内的内容不被解析原样输出  
     `<![CDATA[ 内容 ]]>`  
-
 * **转义字符**  
 对于一些单个字符，若想显示原始样式，也可以使用转义的形式予以处理  
-```xml
-& ——> &amp;
-< ——> &lt;
-> ——> &gt;
-" ——> &quot;
-' ——> &apos;
-```
+    ```xml
+    & ——> &amp;
+    < ——> &lt;
+    > ——> &gt;
+    " ——> &quot;
+    ' ——> &apos;
+    ```
 
 * **处理指令**  
  使解析引擎知道采用何种方式解析XML，比如使用`xml-stylesheet` 使用CSS文件显示XML  
@@ -38,3 +37,7 @@
 # XML 描述事物本身(可扩展)
 # XSL 展现事物表现形式
 # DTD 定义XML语言的语法，约束和校验
+
+## DOM4J解析可以看官方实例
+[DOM4J](https://dom4j.github.io)  
+[Dom4j的使用(全而好的文章)](http://www.blogjava.net/i369/articles/154264.html)
