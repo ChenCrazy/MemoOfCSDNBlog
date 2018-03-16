@@ -29,7 +29,7 @@ private static class Node<E> {
 
 下图是LinkedList内部结构的可视化，能够帮我们更好的理解LinkedList内部的结构。
 
-![LinkList](..\Inmage\LinkList.png)
+![LinkList](https://github.com/ChenCrazy/Note/blob/master/Inmage/LinkList.png)
 
 双端链表由node组成，每个节点有两个reference指向前驱节点和后继结点，第一个节点的前驱节点为null，最后一个节点的后继节点为null。  
 

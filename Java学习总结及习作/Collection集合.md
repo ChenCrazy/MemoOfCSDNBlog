@@ -14,7 +14,7 @@ java.util.
 │ &nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└┄Stack  
 │ &nbsp;&nbsp;├Queue   
 │ &nbsp;&nbsp;│ └┄Dueue  
-│ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└┄Set **\*\*\***              
+│ &nbsp;&nbsp;└┄Set **\*\*\***              
 └Map  
 &nbsp;&nbsp;&nbsp;├┄AbstractMap  
 &nbsp;&nbsp;&nbsp;│ &nbsp;&nbsp;├┄HashMap(implements Map<K,V>, Serializable, Cloneable) **\*\*\***  
@@ -38,11 +38,11 @@ java.util.
 
 ## 比较
 HashMap和HashTable的区别:  
-1.Hashtable是线程安全的,方法是Synchronized的,适合在多线程环境中使用,效率稍低；HashMap不是线程安全的,方法不是Synchronized的,效率稍高,适合在单线程环境下使用,所以在多线程场合下使用的话,需要手动同步HashMap,Collections.synchronizedMap()。  
-2.HashMap的key和value都可以为null值,HashTable的key和value都不允许有Null值。  
-3.HashMap中数组的默认大小是16,而且一定是2的倍数,扩容后的数组长度是之前数组长度的2倍。HashTable中数组默认大小是11,扩容后的数组长度是之前数组长度的2倍+1。  
-4.哈希值的使用不同   
-5 HashMap 重新计算 hash 值,而且用&代替求模  
+&nbsp;&nbsp;1.Hashtable是线程安全的,方法是Synchronized的,适合在多线程环境中使用,效率稍低；HashMap不是线程安全的,方法不是Synchronized的,效率稍高,适合在单线程环境下使用,所以在多线程场合下使用的话,需要手动同步HashMap,Collections.synchronizedMap()。  
+&nbsp;&nbsp;2.HashMap的key和value都可以为null值,HashTable的key和value都不允许有Null值。  
+&nbsp;&nbsp;3.HashMap中数组的默认大小是16,而且一定是2的倍数,扩容后的数组长度是之前数组长度的2倍。HashTable中数组默认大小是11,扩容后的数组长度是之前数组长度的2倍+1。  
+&nbsp;&nbsp;4.哈希值的使用不同   
+&nbsp;&nbsp;5 HashMap 重新计算 hash 值,而且用&代替求模  
 
 
 (1) **HashMap**：它根据键的hashCode值存储数据,大多数情况下可以直接定位到它的值,因而具有很快的访问速度,但遍历顺序却是不确定的。HashMap最多只允许一条记录的键为null,允许多条记录的值为null。**当get()方法返回null值时,既可以表示HashMap中没有该键,也可以表示该键所对应的值为 null。因此,在HashMap中不能用get()方法来判断HashMap中是否存在某个键,而应该用containsKey()方法来判断。Hashtable的键值都不能为 null,所以可以用get()方法来判断是否含有某个键。** HashMap非线程安全,即任一时刻可以有多个线程同时写HashMap,可能会导致数据的不一致。如果需要满足线程安全,可以用Collections的`synchronizedMap`方法使HashMap具有线程安全的能力,或者使用ConcurrentHashMap。  
