@@ -72,7 +72,18 @@ Hash 算法本质上就是三步：取key 的hashCode 值、高位运算、取�
 ## ArrayList
 [Java源码剖析之ArrayList](Java源码剖析之ArrayList.md)
 ## HashMap
-[Java 8系列之重新认识HashMap](https://tech.meituan.com/java-hashmap.html)
+[Java 8系列之重新认识HashMap](https://tech.meituan.com/java-hashmap.html)  
+[HashMap的死循环](http://pettyandydog.com/2016/08/28/HashMap_infinite_loop)  
+[HashMap多线程死循环问题](https://blog.csdn.net/xuefeng0707/article/details/40797085)  
+
+## ConcurrentHashMap
+[ConcurrentHashMap总结](http://www.importnew.com/22007.html)  
+[深入并发包 ConcurrentHashMap](http://www.importnew.com/26049.html)  
+[漫画：什么是ConcurrentHashMap?](http://www.sohu.com/a/205451532_684445)
+
+## 比较
+[Java中的几个HashMap/ConcurrentHashMap实现分析](http://www.importnew.com/19685.html)  
+[Java7//8中的HashMap和ConcurrentHashMap全解析](http://www.importnew.com/28263.html)  
 ## HashSet
 [HashSet实现原理分析](https://www.jianshu.com/p/a5063dd843d5)
 
