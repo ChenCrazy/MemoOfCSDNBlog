@@ -1,9 +1,9 @@
-## MemoOfCSDNBlog
+## Note
 * **就是一个笔记的备忘而已**
 * 网上用Gayhub搭窝子各家各说，  
 * 我想有空自己好好研究一下到时候把这里的文再搬进去  
 
-
+一定要看`https://github.com/CyC2018/Interview-Notebook`,这个文档全面一些,不过我自己写的更适合自己
 
 ----
 <br><br>
