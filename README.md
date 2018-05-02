@@ -1,3 +1,7 @@
+已学/在学或准备深入的技术栈
+[![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/ChenCrazy/showyoumystack)
+
+
 ## Note
 * **就是一个笔记的备忘而已**
 * 网上用Gayhub搭窝子各家各说，  
